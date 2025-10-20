@@ -8,12 +8,12 @@ export async function syncUser() {
         const user = await currentUser();
         if (!user) return;
 
-        const existingUser = await prisma.user.findUnique({ where: { clerkid: user.id } });
+        const existingUser = await prisma.user.findUnique({ where: { clerkId: user.id } });
         if (existingUser) return existingUser;
 
         const dbUser = await prisma.user.create({
             data: {
-                clerkid: user.id,
+                clerkId: user.id,
                 firstName: user.firstName,
                 lastName: user.lastName,
                 email: user.emailAddresses[0].emailAddress,

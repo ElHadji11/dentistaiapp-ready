@@ -47,7 +47,7 @@ export async function getUserAppointments() {
         if (!userId) throw new Error("You must be logged in to view appointments");
 
         // find user by clerkId from authenticated session
-        const user = await prisma.user.findUnique({ where: { clerkid: userId } });
+        const user = await prisma.user.findUnique({ where: { clerkId: userId } });
         if (!user) throw new Error("User not found. Please ensure your account is properly set up.");
 
         const appointments = await prisma.appointment.findMany({
@@ -71,7 +71,7 @@ export async function getUserAppointmentStats() {
         const { userId } = await auth();
         if (!userId) throw new Error("You must be authenticated");
 
-        const user = await prisma.user.findUnique({ where: { clerkid: userId } });
+        const user = await prisma.user.findUnique({ where: { clerkId: userId } });
 
         if (!user) throw new Error("User not found");
 
@@ -134,7 +134,7 @@ export async function bookAppointment(input: BookAppointmentInput) {
             throw new Error("Doctor, date, and time are required");
         }
 
-        const user = await prisma.user.findUnique({ where: { clerkid: userId } })
+        const user = await prisma.user.findUnique({ where: { clerkId: userId } })
         if (!user) throw new Error("User not found. Please ensure your account is properly set up.");
 
         const appointment = await prisma.appointment.create({
