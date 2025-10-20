@@ -6,6 +6,8 @@
 
 generator client {
   provider = "prisma-client-js"
+  //Il indique à Prisma de générer le client à l'emplacement par défaut (node_modules/@prisma/client), mais votre code (prisma.ts) s'attend à le trouver à un emplacement personnalisé (@/generated/prisma).
+  output   = "./src/generated/prisma" //ojouter 
 }
 
 datasource db {
